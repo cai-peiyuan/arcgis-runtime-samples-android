@@ -157,4 +157,5 @@ include ':add-enc-exchange-set',
         ':web-tiledlayer',
         ':wfs-xml-query',
         ':wms-layer-url',
-        ':wmts-layer'
+        ':wmts-layer',
+        ':forestry-arcgis-app'

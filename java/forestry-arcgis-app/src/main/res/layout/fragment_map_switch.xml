@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+	<!-- 地图切换按钮Fragment -->
+    <LinearLayout
+        android:layout_width="@dimen/map_tool_width_45dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center"
+        android:background="@mipmap/mapbg"
+        android:gravity="right|center"
+        android:orientation="vertical" >
+		<!-- 热力图按钮 -->
+        <ImageButton
+            android:id="@+id/reliBtn"
+            android:layout_width="@dimen/map_tool_width_45dp"
+            android:layout_height="@dimen/map_tool_width_45dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/relimap_normal1" 
+            android:visibility="gone"
+            />
+		<!-- 底图切换按钮 -->
+        <ImageButton
+            android:id="@+id/switchBtn"
+            android:layout_width="@dimen/map_tool_width_45dp"
+            android:layout_height="@dimen/map_tool_width_45dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/map_switch_btn" />
+    </LinearLayout>
+    
+    
+    
+	<!-- 热力图按钮按下 显示的控件-->
+    <LinearLayout
+        android:id="@+id/relimap_btnpassed_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@mipmap/mapbg"
+        android:orientation="vertical" >
+        <LinearLayout
+            android:id="@+id/relimap_midulayout"
+            android:layout_width="@dimen/map_margin_440px"
+            android:layout_height="wrap_content" >
+           <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/map_tool_width_45dp"
+                android:layout_weight="1" 
+                android:id="@+id/relimap_item_layout">
+                <TextView
+                    android:id="@+id/relimap_item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/map_margin_15dp"
+                    android:text="人口总数"
+                    android:textColor="#03a9f4"
+                    android:textSize="@dimen/map_TextSize_28px" />
+                <ImageButton
+                    android:id="@+id/relimap_jiantou"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="30dp"
+                    android:background="@android:color/transparent"
+                    android:src="@mipmap/relimap_xiala" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="@dimen/map_tool_width_45dp"
+                android:layout_height="@dimen/map_tool_width_45dp"
+                android:layout_gravity="right|center_vertical"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal" >
+				<!-- 热力按钮按下 -->
+                <ImageButton
+                    android:id="@+id/relimap_btnpassed"
+                    android:layout_width="@dimen/map_tool_width_45dp"
+                    android:layout_height="@dimen/map_tool_width_45dp"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@mipmap/relimap_passed1" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/relimap_list_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+			<!-- 热力图层列表 -->
+            <ListView
+                android:id="@+id/relimap_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

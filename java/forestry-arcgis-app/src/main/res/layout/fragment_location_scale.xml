@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+	<!-- 我的位置图片按钮 -->
+    <LinearLayout
+        android:layout_width="@dimen/map_tool_width_45dp"
+        android:layout_height="@dimen/map_tool_width_45dp"
+        android:background="@mipmap/mapbg" >
+        <ImageButton
+            android:contentDescription="@string/btn_mylocation"
+            android:id="@+id/button_location"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/map_location_normal" />
+    </LinearLayout>
+	<!-- 比例尺信息 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/map_margin_15px"
+        android:orientation="vertical" >
+		<!-- 文本 -->
+        <TextView
+            android:id="@+id/ScaleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/txt_scale_default_info"
+            android:textColor="#000000"
+            android:layout_gravity="center"
+            android:textSize="@dimen/map_TextSize_24px" />
+		<!-- 比例尺背景 线条-->
+        <Button
+            android:id="@+id/btnScale"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/map_margin_16px"
+            android:background="@mipmap/map_icon_scale"
+            android:clickable="false"
+            android:layout_gravity="center"
+            android:focusable="false" />
+    </LinearLayout>
+    <!-- 调试信息 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/map_margin_15px"
+        android:orientation="vertical"
+        android:visibility="visible"
+         >
+        <TextView
+            android:id="@+id/txt_debug_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/txt_scale_default_info"
+            android:textColor="#000000"
+            android:layout_gravity="center"
+            android:textSize="@dimen/map_TextSize_24px" />
+        <TextView
+            android:id="@+id/txt_debug_info1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/txt_scale_default_info"
+            android:textColor="#000000"
+            android:layout_gravity="center"
+            android:textSize="@dimen/map_TextSize_24px" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="relimap_item_name_lan">#03a9f4</color>
+    <color name="relimap_item_name_hei">#000000</color>
+    <color name="item_searchhistory_text">#353535</color>
+    <color name="title_backgound_blue">#42bdf5</color>
+    <color name="add_themes_addtextcolor">#4d4d4d</color>
+    <color name="add_themes_addbg">#ececec</color>
+    <color name="add_themes_infotextcolor">#999999</color>
+    <color name="add_themes_downloadtextcolor">#1083ff</color>
+    <color name="functionlist_itemtextcolor">#4d4d4d</color>
+    <color name="information_bg">#d1d1d1</color>
+    <color name="luxian_bg">#ececec</color>
+    <color name="luxian_passed_bg">#eeeeee</color>
+    <color name="count_number">#03a9f4</color>
+
+</resources>

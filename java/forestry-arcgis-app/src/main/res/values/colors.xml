@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#afc7e7</color>
+    <color name="colorPrimaryDark">#5b99ec</color>
+    <color name="colorAccent">#FF4081</color>
+    <!-- 通用 -->
+
+    <color name="main_text_color">#777777</color>
+    <color name="text">#343434</color>
+
+    <!-- 主页 -->
+
+    <color name="login_solid">#e4edfa</color>
+    <color name="login_divide">#afc7e7</color>
+    <color name="main">#5b99ec</color>
+    <color name="main_bg">#F4F4F4</color>
+    <color name="main_line">#4E59ED</color>
+    <color name="listtop_blue">#142B44</color>
+    <color name="devide_line">#CBCED2</color>
+    <color name="whites">#ffffff</color>
+    <color name="grays">#E7E7E7</color>
+    <color name="gray_font">#676767</color>
+    <color name="common_title">#F9F9F9</color>
+    <color name="main_title">#333333</color>
+    <color name="pull_refresh_textview">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="refresh_head_bg">#2B2B2B</color>
+    <color name="backColor">#2000</color>
+    <color name="detail_bgColor">#f5f5f5</color>
+    <color name="defaultTextColor">#666</color>
+    <color name="viewfinder_frame">#2477ab</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_view">#b0000000</color>
+    <color name="deepcolor">#faaa5f</color>
+    <color name="shadowcolor">#333333</color>
+    <color name="naming">#ABABAB</color>
+    <color name="background">#272727</color>
+    <color name="orange_yellow">#9b9ba0</color>
+
+    <drawable name="semi_black">#80000000</drawable>
+
+    <color name="remote_connect_text">#FFe78018</color>
+    <color name="remote_disconnect_text">#FF901821</color>
+    <color name="ui_dialog_divider">@color/list_divider_color</color>
+    <color name="ui_dialog_list_text">#5E5E5E</color>
+    <color name="text_dark">#af000000</color>
+    <color name="text_light">#3f000000</color>
+    <color name="light_gray">#1a000000</color>
+    <color name="lightest_gray">#0a000000</color>
+    <color name="bg_touch">@color/lightest_gray</color>
+    <color name="main_background">#ffebedf0</color>
+    <color name="list_divider_color">#DADADA</color>
+    <color name="list_item_background_normal">@color/white</color>
+    <color name="teamlist_item_background_normal">#ffffff</color>
+    <color name="list_item_background_pressed">#efefef</color>
+
+    <!-- 常用颜色值 -->
+    <color name="white40">#40FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray">#808080</color>
+    <color name="red">#FF0000</color>
+    <color name="gold">#FFD700</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="green">#008000</color>
+    <color name="blue">#0000FF</color>
+    <color name="purple">#800080</color>
+    <color name="pink">#FFC0CB</color>
+    <color name="orange">#FFA500</color>
+    <color name="lemonyellow">#FFFACD</color>
+    <color name="graywhite">#F5F5F5</color>
+    <color name="grayslate">#708090</color>
+    <color name="lightblue">#0083FF</color>
+    <color name="main_green">#40AA53</color>
+    <color name="main_gray">#9A9A9A</color>
+    <color name="main_black">#333</color>
+    <color name="main_purple">#576B95</color>
+    <color name="actionbar_background">@color/main_green</color>
+    <color name="window_background">#EBEBEB</color>
+    <color name="comment_yellow">#FFFFEE</color>
+    <color name="link_color">#1d6a2a</color>
+    <color name="drawer_menu_item_background_normal">#e2e2e2</color>
+    <color name="drawer_menu_item_background_pressed">#ebeceb</color>
+    <color name="actionbar_item_background_normal">@color/transparent</color>
+    <color name="actionbar_item_background_pressed">#0b751e</color>
+    <color name="main_link_text_color">#ffbedfff</color>
+    <color name="timeline_clickable_text_highlighted_background">#ffbedfff</color>
+
+    <!-- 下拉刷新时，颜色值 -->
+    <color name="swiperefresh_color1">#ff00ddff</color>
+    <color name="swiperefresh_color2">#ffffbb33</color>
+    <color name="swiperefresh_color3">#ffff4444</color>
+    <color name="swiperefresh_color4">#ffaa66cc</color>
+    <color name="project_listitem_title">#294fa1</color>
+    <color name="project_listitem_description">#515151</color>
+    <color name="project_listitem_someinfo">#b6b6b6</color>
+
+    <!-- 动弹列表背景颜色 -->
+    <color name="tweet_bg">#f9f7f7</color>
+    <color name="tweet_item_bg">#ffffff</color>
+    <color name="tweet_item_border">#c2c3c8</color>
+    <color name="tweet_time_platform">#a0a3a7</color>
+    <color name="project_detail_item">#e2e0e0</color>
+    <color name="my_information_option_pressed">#18be40</color>
+
+    <!-- 反馈 -->
+    <color name="text_color_account_info">#ff5e5546</color>
+    <color name="edittext_hint_color">#ffa9a9a9</color>
+
+    <!-- 日历dialog -->
+    <color name="circle_background">#fff2f2f2</color>
+    <color name="line_background">#ffcccccc</color>
+    <color name="done_text_color_normal">#ff333333</color>
+    <color name="done_text_color_disabled">#ffcccccc</color>
+    <color name="darker_blue">#ff00cc99</color>
+    <color name="date_picker_text_normal">#ff999999</color>
+    <color name="calendar_header">#ff999999</color>
+    <color name="date_picker_view_animator">#fff2f2f2</color>
+    <color name="ampm_text_color">#8c8c8c</color>
+    <color name="numbers_text_color">#8c8c8c</color>
+    <color name="transparent_black">#7F000000</color>
+    <color name="spinner_background">#464646</color>
+    <color name="spinner_background_press">#6baf77</color>
+
+
+    <color name="colorPrimarydark">#303135</color>
+    <color name="coloraccent">#7e7e7e</color>
+    <!--<color name="coloraccent">#ff4081</color>-->
+
+    <color name="main_bg0">#f0f0f0</color>
+    <color name="main_bg1">#f8f8f8</color>
+    <color name="main_bg3">#FEB838</color>
+    <color name="main_bg4">#F6F5F5</color>
+    <color name="main_bg5">#E6E6E6</color>
+
+    <color name="assist_red">#ff6d6d</color>
+    <color name="assist_blue">#64a4f4</color>
+    <color name="assist_blue_down">#3489ff</color>
+    <color name="assist_green">#6ae068</color>
+    <color name="assist_yellow">#fcce0b</color>
+
+    <color name="line">#D2D2D2</color>
+    <color name="line2">#1896E5</color>
+    <color name="select_down">#ededed</color>
+
+    <color name="gray0">#464646</color>
+    <color name="gray1">#7e7e7e</color>
+    <color name="gray2">#969696</color>
+    <color name="gray3">#c8969696</color>
+    <color name="gray4">#F5F5F5</color>
+    <color name="gray5">#EBEBEB</color>
+    <color name="gray6">#FBFBFB</color>
+    <color name="gray7">#999999</color>
+    <color name="gray8">#D9D9D9</color>
+    <color name="gray9">#DBDFE0</color>
+
+    <color name="red0">#ff0000</color>
+    <color name="red1">#D84E43</color>
+    <color name="red2">#F08B88</color>
+    <color name="red3">#FFFAF5</color>
+    <color name="red4">#823026</color>
+    <color name="red5">#FA6F5F</color>
+    <color name="red6">#D54A47</color>
+    <color name="red7">#E64340</color>
+
+    <color name="green0">#45C01A</color>
+    <color name="green1">#45C01A</color>
+    <color name="green2">#A3DEA3</color>
+    <color name="green3">#1AAD19</color>
+
+    <color name="blue0">#576B95</color>
+
+    <color name="black0">#000000</color>
+    <color name="black1">#99000000</color>
+    <color name="white">#ffffff</color>
+
+    <color name="yellow0">#FFC51B</color>
+    <color name="yellow1">#E5A134</color>
+
+
+    <!--遮盖层颜色-->
+    <color name="mask">#32000000</color>
+
+    <!--快速索引bar颜色-->
+    <color name="side_bar">#919091</color>
+    <color name="side_bar_pressed">#BFBFBF</color>
+</resources>

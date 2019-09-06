@@ -1,0 +1,294 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="title_btn_112px">56dp</dimen>
+    <dimen name="title_18px">9dp</dimen>
+    <dimen name="title_31px">15dp</dimen>
+    <dimen name="title_92px">46dp</dimen>
+    <dimen name="title_textsize_32">16sp</dimen>
+    <dimen name="title_textsize_36">18sp</dimen>
+
+    <dimen name="add_themes_690px">345dp</dimen>
+    <dimen name="add_themes_600px">300dp</dimen>
+    <dimen name="add_themes_204px">102dp</dimen>
+    <dimen name="add_themes_154px">77dp</dimen>
+    <dimen name="add_themes_135px">67dp</dimen>
+    <dimen name="add_themes_104px">52dp</dimen>
+    <dimen name="add_themes_100px">50dp</dimen>
+    <dimen name="add_themes_88px">44dp</dimen>
+    <dimen name="add_themes_60px">30dp</dimen>
+    <dimen name="add_themes_35px">18dp</dimen>
+    <dimen name="add_themes_32px">16dp</dimen>
+    <dimen name="add_themes_26px">13dp</dimen>
+    <dimen name="add_themes_24px">12dp</dimen>
+    <dimen name="add_themes_22px">11dp</dimen>
+    <dimen name="add_themes_11px">5dp</dimen>
+    <dimen name="add_themes_textsize_24">12sp</dimen>
+    <dimen name="add_themes_textsize_26">13sp</dimen>
+    <dimen name="add_themes_textsize_28">14sp</dimen>
+    <dimen name="add_themes_textsize_34">17sp</dimen>
+
+    <dimen name="activity_menu_19px">10dp</dimen>
+    <dimen name="activity_menu_28px">14dp</dimen>
+    <dimen name="activity_menu_38px">19dp</dimen>
+    <dimen name="activity_menu_42px">21dp</dimen>
+    <dimen name="activity_menu_textsize_32">16sp</dimen>
+    <dimen name="activity_menu_textsize_24">12sp</dimen>
+    <dimen name="activity_menu_textsize_28">14sp</dimen>
+    <dimen name="activity_menu_textsize_48">24sp</dimen>
+    <dimen name="activity_menu_width_400px">200dp</dimen>
+
+    <dimen name="functionlist_31px">15dp</dimen>
+    <dimen name="functionlist_47px">24dp</dimen>
+    <dimen name="functionlist_64px">32dp</dimen>
+    <dimen name="functionlist_96px">48dp</dimen>
+    <dimen name="functionlist_textsize_24">12sp</dimen>
+    <dimen name="functionlist_textsize_32">16sp</dimen>
+
+    <dimen name="favoritelist_154px">77dp</dimen>
+    <dimen name="favoritelist_58px">29dp</dimen>
+    <dimen name="favoritelist_48px">24dp</dimen>
+    <dimen name="favoritelist_31px">15dp</dimen>
+    <dimen name="favoritelist_16px">8dp</dimen>
+    <dimen name="favoritelist_textsize_34">17sp</dimen>
+    <dimen name="favoritelist_textsize_32">16sp</dimen>
+    <dimen name="favoritelist_textsize_28">14sp</dimen>
+
+    <dimen name="searchhistory_112px">56dp</dimen>
+    <dimen name="searchhistory_42px">20dp</dimen>
+    <dimen name="searchhistory_24px">12dp</dimen>
+    <dimen name="searchhistory_textsize_32">17sp</dimen>
+    <dimen name="searchhistory_textsize_28">14sp</dimen>
+
+    <dimen name="layoutcountlist_16px">8dp</dimen>
+    <dimen name="layoutcountlist_40px">20dp</dimen>
+    <dimen name="layoutcountlist_98px">49dp</dimen>
+    <dimen name="layoutcountlist_142px">71dp</dimen>
+    <dimen name="layoutcountlist_80px">40dp</dimen>
+    <dimen name="layoutcountlist_textsize_28">14sp</dimen>
+    <dimen name="layoutcountlist_textsize_32">16sp</dimen>
+    <dimen name="layoutcountlist_textsize_34">17sp</dimen>
+
+    <dimen name="itemSearchHistory_paddingLeft_23px">14dp</dimen>
+    <dimen name="itemSearchHistory_textSize_34">17sp</dimen>
+    <dimen name="itemSearchHistory_height_90px">45dp</dimen>
+
+    <!-- 地图 徐非 -->
+    <dimen name="mainsearch_TextSize_42px">21sp</dimen>
+    <dimen name="mainsearch_height_170px">85dp</dimen>
+    <dimen name="mainsearch_margin_30px">15dp</dimen>
+    <dimen name="mainsearch_padding_200px">100dp</dimen>
+    <dimen name="map_margin_80px">40dp</dimen>
+    <dimen name="map_margin_300px">150dp</dimen>
+    <dimen name="map_margin_15px">8dp</dimen>
+    <dimen name="map_margin_15dp">15dp</dimen>
+    <dimen name="map_TextSize_24px">12sp</dimen>
+    <dimen name="map_margin_20px">10sp</dimen>
+    <dimen name="map_margin_45dp">45dp</dimen>
+    <dimen name="map_margin_140px">75dp</dimen>
+    <dimen name="map_margin_200px">100dp</dimen>
+    <dimen name="map_margin_400px">200dp</dimen>
+    <dimen name="map_margin_16px">8dp</dimen>
+    <dimen name="map_tool_width_45dp">45dp</dimen>
+    <dimen name="map_tool_width_40px">80dp</dimen>
+    <dimen name="map_tool_width_100px">100dp</dimen>
+    <dimen name="map_tool_width_50px">50dp</dimen>
+    <dimen name="map_popheight_250px">125dp</dimen>
+    <dimen name="map_popwidth_840px">420dp</dimen>
+    <dimen name="map_next_320px">160dp</dimen>
+    <dimen name="map_next_120px">60dp</dimen>
+    <dimen name="map_mode_18px">9dp</dimen>
+    <dimen name="map_mode_34px">17dp</dimen>
+    <dimen name="map_mode_12dp">12dp</dimen>
+    <dimen name="map_compass_84px">42dp</dimen>
+    <dimen name="map_margin_440px">220dp</dimen>
+    <dimen name="map_TextSize_28px">14sp</dimen>
+    <dimen name="map_TextSize_32px">16sp</dimen>
+    <dimen name="map_TextSize_12sp">12sp</dimen>
+
+    <dimen name="cejutitle_height_112px">56dp</dimen>
+    <dimen name="cejutitle_TextSize_36px">18sp</dimen>
+
+    <dimen name="xiangqin_TextSize_34px">17sp</dimen>
+    <dimen name="xiangqin_TextSize_28px">14sp</dimen>
+    <dimen name="xiangqin_TextSize_32px">16sp</dimen>
+    <dimen name="xiangqin_margin_34px">25dp</dimen>
+    <dimen name="xiangqin_margin_16px">8dp</dimen>
+    <dimen name="xiangqin_margin_32px">16dp</dimen>
+    <dimen name="xiangqin_margin_108px">54dp</dimen>
+    <dimen name="xiangqin_margin_160px">80dp</dimen>
+    <dimen name="xiangqing_listheight_490px">245dp</dimen>
+
+    <dimen name="luxian_120px">60dp</dimen>
+    <dimen name="luxian_90px">45dp</dimen>
+    <dimen name="luxian_24px">12dp</dimen>
+    <dimen name="luxian_textsize_28sp">14sp</dimen>
+
+    <dimen name="biaozhu_margeleftright_32px">16dp</dimen>
+    <dimen name="biaozhu_martop_21px">11dp</dimen>
+    <dimen name="biaozhu_itemheight_142px">71dp</dimen>
+    <dimen name="biaozhu_smalltextsize_24px">12sp</dimen>
+    <dimen name="biaozhu_zhanweisize_16px">8sp</dimen>
+    <dimen name="biaozhu_line_2px">1dp</dimen>
+
+    <dimen name="count_textsize_28sp">14sp</dimen>
+    <dimen name="count_height_90px">45dp</dimen>
+    <dimen name="count_margin_24px">12dp</dimen>
+    <dimen name="count_textsize_32sp">16sp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <!--
+         Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html
+    -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+
+    <!-- OSChina APP -->
+    <dimen name="text_size_32">32.0dip</dimen>
+    <dimen name="text_size_31">31.0dip</dimen>
+    <dimen name="text_size_30">30.0dip</dimen>
+    <dimen name="text_size_29">29.0dip</dimen>
+    <dimen name="text_size_28">28.0dip</dimen>
+    <dimen name="text_size_27">27.0dip</dimen>
+    <dimen name="text_size_26">26.0dip</dimen>
+    <dimen name="text_size_25">25.0dip</dimen>
+    <dimen name="text_size_24">24.0dip</dimen>
+    <dimen name="text_size_23">23.0dip</dimen>
+    <dimen name="text_size_22">22.0dip</dimen>
+    <dimen name="text_size_21">21.0dip</dimen>
+    <dimen name="text_size_20">20.0dip</dimen>
+    <dimen name="text_size_19">19.0dip</dimen>
+    <dimen name="text_size_18">18.0dip</dimen>
+    <dimen name="text_size_17">17.0dip</dimen>
+    <dimen name="text_size_16">16.0dip</dimen>
+    <dimen name="text_size_15">15.0dip</dimen>
+    <dimen name="text_size_14">14.0dip</dimen>
+    <dimen name="text_size_13">13.0dip</dimen>
+    <dimen name="text_size_12">12.0dip</dimen>
+    <dimen name="text_size_11">11.0dip</dimen>
+    <dimen name="text_size_10">10.0dip</dimen>
+    <dimen name="text_size_9">9.0dip</dimen>
+    <dimen name="text_size_8">8.0dip</dimen>
+    <dimen name="text_size_7">7.0dip</dimen>
+    <dimen name="space_100">100.0dip</dimen>
+    <dimen name="space_60">60dp</dimen>
+    <dimen name="space_49">49dip</dimen>
+    <dimen name="space_35">35.0dip</dimen>
+    <dimen name="space_30">30.0dip</dimen>
+    <dimen name="space_29">29.0dip</dimen>
+    <dimen name="space_28">28.0dip</dimen>
+    <dimen name="space_27">27.0dip</dimen>
+    <dimen name="space_26">26.0dip</dimen>
+    <dimen name="space_25">25.0dip</dimen>
+    <dimen name="space_24">24.0dip</dimen>
+    <dimen name="space_23">23.0dip</dimen>
+    <dimen name="space_22">22.0dip</dimen>
+    <dimen name="space_21">21.0dip</dimen>
+    <dimen name="space_20">20.0dip</dimen>
+    <dimen name="space_19">19.0dip</dimen>
+    <dimen name="space_18">18.0dip</dimen>
+    <dimen name="space_17">17.0dip</dimen>
+    <dimen name="space_16">16.0dip</dimen>
+    <dimen name="space_15">15.0dip</dimen>
+    <dimen name="space_14">14.0dip</dimen>
+    <dimen name="space_13">13.0dip</dimen>
+    <dimen name="space_12">12.0dip</dimen>
+    <dimen name="space_11">11.0dip</dimen>
+    <dimen name="space_10">10.0dip</dimen>
+    <dimen name="space_9">9.0dip</dimen>
+    <dimen name="space_8">8.0dip</dimen>
+    <dimen name="space_7">7.0dip</dimen>
+    <dimen name="space_6">6.0dip</dimen>
+    <dimen name="space_5">5.0dip</dimen>
+    <dimen name="space_4">4.0dip</dimen>
+    <dimen name="space_3">3.0dip</dimen>
+    <dimen name="space_2">2.0dip</dimen>
+    <dimen name="space_1">1.0dip</dimen>
+
+    <dimen name="dialog_margin">7.0dip</dimen>
+    <dimen name="global_padding">8.0dip</dimen>
+    <dimen name="global_dialog_padding">15.0dip</dimen>
+    <dimen name="text_regular_primary_size">14.0dip</dimen>
+    <dimen name="text_large_secondary_size">12.0dip</dimen>
+    <dimen name="text_large_primary_size">16.0dip</dimen>
+
+    <dimen name="popo_menu_dialog_width">150dip</dimen>
+
+
+    <dimen name="tweet_item_margin">8dp</dimen>
+    <dimen name="tweet_item_border_width">1dp</dimen>
+    <dimen name="tweet_item_corner_radius">3dp</dimen>
+    <dimen name="tweet_item_padding_top_bottom">20dp</dimen>
+    <dimen name="tweet_item_padding_left_right">15dp</dimen>
+    <dimen name="tweet_item_profile_info_padd">10dp</dimen>
+    <dimen name="tweet_linkview_left">25dp</dimen>
+
+    <dimen name="timeline_small_card_icon_width">12.0dip</dimen>
+    <dimen name="timeline_small_card_icon_height">12.0dip</dimen>
+    <dimen name="timeline_small_card_icon_margin_left">5.0dip</dimen>
+    <dimen name="timeline_small_card_triangle_margin_left">5.0dip</dimen>
+    <dimen name="timeline_small_card_triangle_margin_right">4.0dip</dimen>
+    <dimen name="timeline_small_card_title_margin_left">5.0dip</dimen>
+    <dimen name="timeline_small_card_title_text_size">12.0sp</dimen>
+
+    <dimen name="timeline_small_card_height">20.0dip</dimen>
+    <dimen name="timeline_small_card_min_width">66.0dip</dimen>
+    <dimen name="timeline_small_card_padding_right">5.0dip</dimen>
+
+    <dimen name="ldrawer_drawableSize">50dp</dimen>
+    <dimen name="ldrawer_barSize">18dp</dimen>
+    <dimen name="ldrawer_topBottomBarArrowSize">11dp</dimen>
+    <dimen name="ldrawer_thickness">2dp</dimen>
+    <dimen name="ldrawer_gapBetweenBars">3dp</dimen>
+    <dimen name="ldrawer_middleBarArrowSize">16dp</dimen>
+
+    <!-- 意见反馈 -->
+    <dimen name="text_size_account_info">18.0sp</dimen>
+
+    <!-- 时间选择dialog -->
+    <dimen name="done_label_size">14sp</dimen>
+    <dimen name="date_picker_component_width">270dip</dimen>
+    <dimen name="date_picker_header_height">30dip</dimen>
+    <dimen name="selected_calendar_layout_height">155dip</dimen>
+    <dimen name="date_picker_view_animator_height">270dip</dimen>
+    <dimen name="month_list_item_header_height">50dip</dimen>
+    <dimen name="month_day_label_text_size">10sp</dimen>
+    <dimen name="day_number_select_circle_radius">16dip</dimen>
+    <dimen name="month_select_circle_radius">45dip</dimen>
+    <dimen name="selected_date_year_size">30dip</dimen>
+    <dimen name="selected_date_day_size">75dip</dimen>
+    <dimen name="selected_date_month_size">30dip</dimen>
+    <dimen name="date_picker_header_text_size">14dip</dimen>
+    <dimen name="month_label_size">16sp</dimen>
+    <dimen name="day_number_size">16sp</dimen>
+    <dimen name="year_label_height">64dip</dimen>
+    <dimen name="year_label_text_size">22dip</dimen>
+
+    <dimen name="time_label_size">60sp</dimen>
+    <dimen name="extra_time_label_margin">-30dp</dimen>
+    <dimen name="ampm_label_size">16sp</dimen>
+    <dimen name="ampm_left_padding">6dip</dimen>
+    <dimen name="separator_padding">4dip</dimen>
+    <dimen name="header_height">96dip</dimen>
+    <dimen name="picker_dimen">270dip</dimen>
+    <dimen name="minimum_margin_sides">48dip</dimen>
+    <dimen name="minimum_margin_top_bottom">24dip</dimen>
+
+    <item name="circle_radius_multiplier" format="float" type="string">0.82</item>
+    <item name="circle_radius_multiplier_24HourMode" format="float" type="string">0.85</item>
+    <item name="selection_radius_multiplier" format="float" type="string">0.16</item>
+    <item name="ampm_circle_radius_multiplier" format="float" type="string">0.19</item>
+    <item name="numbers_radius_multiplier_normal" format="float" type="string">0.81</item>
+    <item name="numbers_radius_multiplier_inner" format="float" type="string">0.60</item>
+    <item name="numbers_radius_multiplier_outer" format="float" type="string">0.83</item>
+    <item name="text_size_multiplier_normal" format="float" type="string">0.17</item>
+    <item name="text_size_multiplier_inner" format="float" type="string">0.14</item>
+    <item name="text_size_multiplier_outer" format="float" type="string">0.11</item>
+
+</resources>

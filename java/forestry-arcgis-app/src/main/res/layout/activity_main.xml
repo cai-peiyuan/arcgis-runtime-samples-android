@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bohaigaoke.forestry.MainActivity"
+    android:orientation="vertical"
+    >
+
+    <!--<android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>-->
+
+    <!-- MapView -->
+    <com.esri.arcgisruntime.mapping.view.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        mapoptions.center="112.9834,25.8138"
+        mapoptions.ZoomLevel="13"
+        >
+    </com.esri.arcgisruntime.mapping.view.MapView>
+
+    <!-- 专题fragment -->
+    <FrameLayout
+        android:id="@+id/layout_top1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/main"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+    </FrameLayout>
+
+    <!-- top right 底图切换按钮 -->
+    <FrameLayout
+        android:id="@+id/layout_top_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/layout_top1"
+        android:layout_marginRight="@dimen/map_margin_15dp"
+        android:layout_marginTop="@dimen/map_margin_15dp"
+        android:gravity="center"
+        android:orientation="vertical" >
+        <fragment
+            android:id="@+id/fragment_map_switch"
+            android:name="com.bohaigaoke.forestry.fragment.SwitchFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+
+    <!-- 简要信息 -->
+    <FrameLayout
+        android:id="@+id/layout_bottom1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical" >
+    </FrameLayout>
+
+    <!-- 详细信息 -->
+    <FrameLayout
+        android:id="@+id/layout_bottom2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_bottom1"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/map_margin_20px"
+        android:gravity="center"
+        android:orientation="vertical" >
+    </FrameLayout>
+
+    <!-- 右下角组件  放大缩小按钮 -->
+    <FrameLayout
+        android:id="@+id/layout_bottom_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_bottom1"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/map_margin_15dp"
+        android:layout_marginRight="@dimen/map_margin_15dp"
+        android:gravity="center"
+        android:clickable="true"
+        android:orientation="horizontal" >
+        <fragment
+            android:id="@+id/fragment_zoom"
+            android:name="com.bohaigaoke.forestry.fragment.ZoomFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <!-- 定位到设备位置按钮 -->
+    <FrameLayout
+        android:id="@+id/layout_bottom_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_bottom1"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="@dimen/map_margin_15dp"
+        android:layout_marginLeft="@dimen/map_margin_15dp"
+        android:orientation="horizontal" >
+        <fragment
+            android:id="@+id/fragment_location"
+            android:name="com.bohaigaoke.forestry.fragment.LocationFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <!-- 遮罩 -->
+    <FrameLayout
+        android:id="@+id/layout_black_modal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#b0000000"
+        android:visibility="gone"
+        android:clickable="true" >
+    </FrameLayout>
+
+</RelativeLayout>

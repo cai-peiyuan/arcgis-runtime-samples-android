@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right"
+    android:gravity="right"
+    android:orientation="horizontal">
+    <!-- 底图切换ow -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/map_margin_15dp"
+        android:background="@mipmap/mapbg"
+        android:orientation="vertical">
+
+        <!-- 第一行 地图切换图片 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/map_mode_12dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/map_mode_34px"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <!-- 矢量电子地图 -->
+                <ImageButton
+                    android:id="@+id/dianziBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/dianzimap_btn" />
+
+                <TextView
+                    android:id="@+id/txt_map1_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/map_mode_18px"
+                    android:layout_weight="1"
+                    android:text="@string/map_vector"
+                    android:textColor="#484848"
+                    android:textSize="@dimen/map_TextSize_28px" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/map_mode_34px"
+                android:layout_marginRight="@dimen/map_mode_34px"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <!-- 影像地图 -->
+                <ImageButton
+                    android:id="@+id/yinxiangBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/yinxiangmap_btn" />
+
+                <TextView
+                    android:id="@+id/txt_map2_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/map_mode_18px"
+                    android:layout_weight="1"
+                    android:text="@string/map_image"
+                    android:textColor="#484848"
+                    android:textSize="@dimen/map_TextSize_28px" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/map_mode_34px"
+                android:layout_marginRight="@dimen/map_mode_34px"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <!-- 地形图 -->
+                <ImageButton
+                    android:id="@+id/dixingBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/dixingmap_btn" />
+
+                <TextView
+                    android:id="@+id/txt_map3_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/map_mode_18px"
+                    android:layout_weight="1"
+                    android:text="@string/map_dixing"
+                    android:textColor="#484848"
+                    android:textSize="@dimen/map_TextSize_28px" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/spilt_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/map_mode_18px"
+            android:background="#e6e6e6"
+            android:text="" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/map_mode_18px"
+            android:layout_marginTop="@dimen/map_mode_18px"
+            android:text="测量" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/map_tool_width_45dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#f1f1f1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
+            <!-- 测距按钮 -->
+            <Button
+                android:id="@+id/pop_ceju"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="right|center"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/measure_length_btn"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="@string/measure_length"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" />
+            <!-- 测距面积按钮 -->
+            <Button
+                android:id="@+id/pop_cemian"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="right|center"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/measure_area_btn"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="@string/measure_area"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" />
+            <!-- 清除按钮 -->
+            <Button
+                android:id="@+id/pop_clear"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/btn_delete"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="@string/btn_clear"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/spilt_line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/map_mode_18px"
+            android:background="#e6e6e6"
+            android:text="" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/map_mode_18px"
+            android:layout_marginTop="@dimen/map_mode_18px"
+            android:text="标注" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/map_tool_width_45dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#f1f1f1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            >
+            <!--  标注点 -->
+            <Button
+                android:id="@+id/pop_point_marker"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="right|center"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/around_btn"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="@string/point_marker"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" />
+            <!--标注线-->
+            <Button
+                android:id="@+id/pop_line_marker"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="right|center"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/line_btn"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="@string/line_marker"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" />
+            <!-- 标注面 -->
+            <Button
+                android:id="@+id/pop_polygon_marker"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="right|center"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/draw_scene_btn"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="@string/polygon_marker"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/map_mode_18px"
+            android:layout_marginTop="@dimen/map_mode_18px"
+            android:text="空间查询"
+            android:visibility="gone"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/map_tool_width_45dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#f1f1f1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <!-- 点周边查询 -->
+            <Button
+                android:id="@+id/pop_point_around_query"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="right|center"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/around_btn"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="@string/around_query"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" />
+            <!--线周边查询-->
+            <!-- <Button
+                android:id="@+id/pop_line_around_query"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="right|center"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/line_btn"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="@string/line_query"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" /> -->
+            <!--画面查询-->
+            <Button
+                android:id="@+id/pop_polygon_query"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="right|center"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/vector_polygon_btn"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="@string/polygon_query"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/map_tool_width_45dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#f1f1f1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <!-- 截图按钮 -->
+            <Button
+                android:id="@+id/pop_jietu"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/caitu"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="截图"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" />
+            <!-- 标注按钮 -->
+            <Button
+                android:id="@+id/pop_biaozhu"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/biaozhu"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="标注"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" />
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+    <!-- 切换工具窗口按钮 -->
+    <LinearLayout
+        android:id="@+id/mapmode_btn_passed_layout"
+        android:layout_width="@dimen/map_tool_width_45dp"
+        android:layout_height="@dimen/map_tool_width_45dp"
+        android:layout_marginTop="@dimen/map_margin_15dp"
+        android:layout_marginRight="@dimen/map_margin_15dp"
+        android:background="@mipmap/mapbg"
+        android:gravity="center"
+        android:orientation="vertical">
+        <!-- pop window 内的切换地图按钮 -->
+        <ImageButton
+            android:id="@+id/mapmode_switch_btn_pressed"
+            android:layout_width="@dimen/map_tool_width_45dp"
+            android:layout_height="@dimen/map_tool_width_45dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/image_content_description"
+            android:src="@drawable/map_switch_pressed" />
+    </LinearLayout>
+
+</LinearLayout>
