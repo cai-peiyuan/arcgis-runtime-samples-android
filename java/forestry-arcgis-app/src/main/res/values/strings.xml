@@ -11,7 +11,7 @@
 
     <string name="copyright">©北京市 2019</string>
 
-    <string name="app_main_title">北京市西城区移动GIS系统</string>
+    <string name="app_main_title">郴州林业移动GIS</string>
     <string name="login_name">请输入用户名</string>
     <string name="login_pss">请输入密码</string>
     <string name="btn_zoomin">zoom in the map</string>

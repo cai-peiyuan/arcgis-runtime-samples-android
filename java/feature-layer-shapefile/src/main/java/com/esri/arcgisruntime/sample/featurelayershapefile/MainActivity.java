@@ -25,15 +25,25 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.Toast;
 
+import com.esri.arcgisruntime.concurrent.ListenableFuture;
+import com.esri.arcgisruntime.data.Feature;
+import com.esri.arcgisruntime.data.FeatureQueryResult;
+import com.esri.arcgisruntime.data.QueryParameters;
 import com.esri.arcgisruntime.data.ShapefileFeatureTable;
+import com.esri.arcgisruntime.geometry.Envelope;
+import com.esri.arcgisruntime.geometry.Point;
 import com.esri.arcgisruntime.layers.FeatureLayer;
 import com.esri.arcgisruntime.loadable.LoadStatus;
 import com.esri.arcgisruntime.mapping.ArcGISMap;
 import com.esri.arcgisruntime.mapping.Basemap;
 import com.esri.arcgisruntime.mapping.Viewpoint;
+import com.esri.arcgisruntime.mapping.view.DefaultMapViewOnTouchListener;
 import com.esri.arcgisruntime.mapping.view.MapView;
+
+import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,6 +84,54 @@ public class MainActivity extends AppCompatActivity {
 
         // zoom the map to the extent of the shapefile
         mMapView.setViewpointAsync(new Viewpoint(shapefileFeatureLayer.getFullExtent()));
+
+
+
+
+        // set an on touch listener to listen for click events
+        mMapView.setOnTouchListener(new DefaultMapViewOnTouchListener(this, mMapView) {
+          @Override
+          public boolean onSingleTapConfirmed(MotionEvent motionEvent) {
+            // get the point that was clicked and convert it to a point in map coordinates
+            Point clickPoint = mMapView
+                    .screenToLocation(new android.graphics.Point(Math.round(motionEvent.getX()), Math.round(motionEvent.getY())));
+            int tolerance = 10;
+            double mapTolerance = tolerance * mMapView.getUnitsPerDensityIndependentPixel();
+            // create objects required to do a selection with a query
+            Envelope envelope = new Envelope(clickPoint.getX() - mapTolerance, clickPoint.getY() - mapTolerance,
+                    clickPoint.getX() + mapTolerance, clickPoint.getY() + mapTolerance, mMapView.getSpatialReference());
+            QueryParameters query = new QueryParameters();
+            query.setGeometry(envelope);
+            // call select features
+            final ListenableFuture<FeatureQueryResult> featureQueryResultFuture = shapefileFeatureLayer
+                    .selectFeaturesAsync(query, FeatureLayer.SelectionMode.NEW);
+            // add done loading listener to fire when the selection returns
+            featureQueryResultFuture.addDoneListener(() -> {
+              try {
+                // call get on the future to get the result
+                FeatureQueryResult featureQueryResult = featureQueryResultFuture.get();
+                // create an Iterator
+                Iterator<Feature> iterator = featureQueryResult.iterator();
+                Feature feature;
+                // cycle through selections
+                int counter = 0;
+                while (iterator.hasNext()) {
+                  feature = iterator.next();
+                  counter++;
+                  Log.d(TAG, "Selection #: " + counter + " Table name: " + feature.getFeatureTable().getTableName());
+                }
+                Toast.makeText(getApplicationContext(), counter + " features selected", Toast.LENGTH_SHORT).show();
+              } catch (Exception e) {
+                Log.e(TAG, "Select feature failed: " + e.getMessage());
+              }
+            });
+            return super.onSingleTapConfirmed(motionEvent);
+          }
+        });
+
+
+
+
       } else {
         String error = "Shapefile feature table failed to load: " + shapefileFeatureTable.getLoadError().toString();
         Toast.makeText(MainActivity.this, error, Toast.LENGTH_LONG).show();

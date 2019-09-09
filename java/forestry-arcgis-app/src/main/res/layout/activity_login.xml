@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@mipmap/lg_background"
@@ -18,7 +19,40 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/route_icon_setings" />
 
+
+
 	</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/map_popheight_250px"
+            android:layout_height="@dimen/map_popheight_250px"
+            android:background="@mipmap/app_logo"
+            app:srcCompat="@mipmap/app_logo" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:text="@string/app_main_title"
+            android:textColor="@color/whites"
+            android:textSize="@dimen/add_themes_60px"
+            android:typeface="normal" />
+
+
+
+    </LinearLayout>
 	<!-- login activity -->
 
     <LinearLayout
@@ -27,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="330dp"
+        android:layout_marginTop="140dp"
         android:orientation="vertical" >
 
 	<!-- username input and image -->
@@ -198,5 +232,7 @@
             android:text="@string/copyright" />
 
     </LinearLayout>
+
+
 
 </LinearLayout>
