@@ -72,4 +72,13 @@
     <string name="line_marker">标线</string>
     <string name="polygon_marker">标面</string>
 
+
+
+    <string name="menu_refresh">Refresh</string>
+    <string name="map_load_status">Map Load Status :</string>
+    <string name="status_loading">Loading</string>
+    <string name="status_loadFail">Failed to load</string>
+    <string name="status_notLoaded">Not loaded</string>
+    <string name="status_loaded">Loaded</string>
+    <string name="status_loadError">Error loading map</string>
 </resources>

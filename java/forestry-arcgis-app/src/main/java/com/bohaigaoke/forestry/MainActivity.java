@@ -3,6 +3,7 @@ package com.bohaigaoke.forestry;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Message;
@@ -23,6 +24,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bohaigaoke.android.map.layer.TianDiTuMethodsClass;
@@ -37,6 +39,8 @@ import com.esri.arcgisruntime.io.RequestConfiguration;
 import com.esri.arcgisruntime.layers.WebTiledLayer;
 import com.esri.arcgisruntime.layers.WmtsLayer;
 import com.esri.arcgisruntime.loadable.LoadStatus;
+import com.esri.arcgisruntime.loadable.LoadStatusChangedEvent;
+import com.esri.arcgisruntime.loadable.LoadStatusChangedListener;
 import com.esri.arcgisruntime.mapping.ArcGISMap;
 import com.esri.arcgisruntime.mapping.Basemap;
 import com.esri.arcgisruntime.mapping.Viewpoint;
@@ -78,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             m_popwin_ButtonPopDixXingMap,
             m_popwin_Button_mapmode_switch_btn_pressed;
 
+    private TextView mMapLoadStatusTextView;
+
     private LocationFragment mLocationFragment; //我的位置
 
     public static MainActivity selfObj;
@@ -102,6 +108,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 初始化页面显示元素
      */
     private void initView() {
+
+        mMapLoadStatusTextView = (TextView) findViewById(R.id.mapLoadStatusResult);
+
         //遮罩层
         black_modal_Layout = (FrameLayout) findViewById(R.id.layout_black_modal);
 
@@ -213,6 +222,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         map.setBasemap(tiandituVectorBaseMap);
         //设置初始化视野
         map.setInitialViewpoint(new Viewpoint(new Point(centerX, centerY, SpatialReference.create(4326)), TianDiTuMethodsClass.SCALES[level]));
+
+
+        // Listener on change in map load status
+        map.addLoadStatusChangedListener(new LoadStatusChangedListener() {
+            @Override
+            public void loadStatusChanged(LoadStatusChangedEvent loadStatusChangedEvent) {
+                String mapLoadStatus;
+                mapLoadStatus = loadStatusChangedEvent.getNewLoadStatus().name();
+                // map load status can be any of LOADING, FAILED_TO_LOAD, NOT_LOADED or LOADED
+                // set the status in the TextView accordingly
+                switch (mapLoadStatus) {
+                    case "LOADING":
+                        mMapLoadStatusTextView.setText(R.string.status_loading);
+                        mMapLoadStatusTextView.setTextColor(Color.BLUE);
+                        break;
+
+                    case "FAILED_TO_LOAD":
+                        mMapLoadStatusTextView.setText(R.string.status_loadFail);
+                        mMapLoadStatusTextView.setTextColor(Color.RED);
+                        break;
+
+                    case "NOT_LOADED":
+                        mMapLoadStatusTextView.setText(R.string.status_notLoaded);
+                        mMapLoadStatusTextView.setTextColor(Color.GRAY);
+                        break;
+
+                    case "LOADED":
+                        mMapLoadStatusTextView.setText(R.string.status_loaded);
+                        mMapLoadStatusTextView.setTextColor(Color.GREEN);
+                        break;
+
+                    default:
+                        mMapLoadStatusTextView.setText(R.string.status_loadError);
+                        mMapLoadStatusTextView.setTextColor(Color.WHITE);
+                        break;
+                }
+
+                Log.d(TAG, mapLoadStatus);
+            }
+        });
+
+
+
         //不显示logo
         mMapView.setAttributionTextVisible(false);
         mMapView.setMap(map);
