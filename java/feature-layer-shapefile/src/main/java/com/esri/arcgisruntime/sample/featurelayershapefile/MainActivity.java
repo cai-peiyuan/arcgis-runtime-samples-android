@@ -41,6 +41,7 @@ import com.esri.arcgisruntime.mapping.ArcGISMap;
 import com.esri.arcgisruntime.mapping.Basemap;
 import com.esri.arcgisruntime.mapping.Viewpoint;
 import com.esri.arcgisruntime.mapping.view.DefaultMapViewOnTouchListener;
+import com.esri.arcgisruntime.mapping.view.GraphicsOverlay;
 import com.esri.arcgisruntime.mapping.view.MapView;
 
 import java.util.Iterator;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
   private final static String TAG = MainActivity.class.getSimpleName();
 
   private MapView mMapView;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

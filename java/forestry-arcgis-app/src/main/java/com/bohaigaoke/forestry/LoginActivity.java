@@ -170,7 +170,18 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 Toast.makeText(getApplication(), "取消登录", Toast.LENGTH_SHORT).show();
             }
         });
-        OSChinaApi.login(lgname, lgpassword, mLoginHandler);
+
+
+        //离线登录
+
+        AppContext.getInstance().setUserInfo(null);
+        Toast.makeText(getApplication(), "用户[测试用户]登陆成功", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        /**
+         *网络验证登录
+         */
+        //OSChinaApi.login(lgname, lgpassword, mLoginHandler);
     }
 
     /**
