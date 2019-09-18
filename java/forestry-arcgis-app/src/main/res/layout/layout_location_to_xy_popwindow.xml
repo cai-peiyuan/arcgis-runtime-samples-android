@@ -7,20 +7,44 @@
     android:gravity="right"
     android:orientation="vertical">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textViewX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:text="X坐标" />
 
         <EditText
             android:id="@+id/editTextX"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_weight="1"
+            android:autofillHints=""
             android:ems="10"
-            android:inputType="numberDecimal"
-            android:text="X坐标" />
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textViewY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:text="Y坐标" />
 
         <EditText
             android:id="@+id/editTextY"
@@ -30,8 +54,7 @@
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="numberDecimal"
-            android:text="Y坐标" />
+            android:inputType="numberDecimal" />
 
     </LinearLayout>
 
@@ -41,22 +64,20 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button_getXY"
+            android:id="@+id/buttonMapToXy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_weight="1"
-            android:background="@drawable/btn_selector"
-            android:text="取坐标" />
+            android:text="定位" />
 
         <Button
-            android:id="@+id/button_mapToXy"
+            android:id="@+id/buttonGetMapXY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_weight="1"
-            android:background="@drawable/btn_selector"
-            android:text="定位" />
+            android:text="取点" />
     </LinearLayout>
 </LinearLayout>

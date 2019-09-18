@@ -57,7 +57,7 @@
         android:background="@color/main"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone" >
+        android:visibility="visible" >
     </FrameLayout>
 
     <!-- 搜索fragment -->
@@ -167,38 +167,49 @@
 
 
 
-    <!-- TextView -->
-    <TextView
-        android:id="@+id/mapLoadStatusText"
-        android:layout_width="wrap_content"
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/mapView"
-        android:text="@string/map_load_status"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#0a1af4"
-        android:textStyle="bold" />
+        android:layout_alignBottom="@+id/mapView"
+        android:orientation="horizontal">
+
+        <!-- TextView -->
+        <TextView
+            android:id="@+id/mapLoadStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/map_load_status"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#0a1af4"
+            android:textStyle="bold" />
 
 
-    <!-- TextView -->
-    <TextView
-        android:id="@+id/mapLoadStatusResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_toEndOf="@+id/mapLoadStatusText"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        <!-- TextView -->
+        <TextView
+            android:id="@+id/mapLoadStatusResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_alignBottom="@+id/mapView"
+            android:layout_toEndOf="@+id/mapLoadStatusText"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
-    <!-- TextView -->
-    <TextView
-        android:id="@+id/appDebugText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_toEndOf="@+id/mapLoadStatusResult"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        <!-- TextView -->
+        <TextView
+            android:id="@+id/appDebugText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/mapLoadStatusResult"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/red" />
+    </LinearLayout>
 
 </RelativeLayout>

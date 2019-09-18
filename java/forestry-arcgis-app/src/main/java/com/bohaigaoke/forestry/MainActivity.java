@@ -17,21 +17,15 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -39,7 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -57,10 +50,7 @@ import com.esri.arcgisruntime.LicenseResult;
 import com.esri.arcgisruntime.geometry.Point;
 import com.esri.arcgisruntime.geometry.Polygon;
 import com.esri.arcgisruntime.geometry.SpatialReference;
-import com.esri.arcgisruntime.io.RequestConfiguration;
 import com.esri.arcgisruntime.layers.WebTiledLayer;
-import com.esri.arcgisruntime.layers.WmtsLayer;
-import com.esri.arcgisruntime.loadable.LoadStatus;
 import com.esri.arcgisruntime.loadable.LoadStatusChangedEvent;
 import com.esri.arcgisruntime.loadable.LoadStatusChangedListener;
 import com.esri.arcgisruntime.location.LocationDataSource;
@@ -75,9 +65,6 @@ import com.esri.arcgisruntime.mapping.view.LocationDisplay;
 import com.esri.arcgisruntime.mapping.view.MapScaleChangedEvent;
 import com.esri.arcgisruntime.mapping.view.MapScaleChangedListener;
 import com.esri.arcgisruntime.mapping.view.MapView;
-import com.esri.arcgisruntime.ogc.wmts.WmtsLayerInfo;
-import com.esri.arcgisruntime.ogc.wmts.WmtsService;
-import com.esri.arcgisruntime.ogc.wmts.WmtsServiceInfo;
 import com.esri.arcgisruntime.symbology.FillSymbol;
 import com.esri.arcgisruntime.symbology.PictureMarkerSymbol;
 import com.esri.arcgisruntime.symbology.SimpleFillSymbol;
@@ -92,13 +79,12 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, BaseFragment.BaseMessage {
 
     private final String TAG = MainActivity.class.getSimpleName();
-
+    public static SpatialReference spatialRefrence = SpatialReference.create(4326);
     private LinearLayout map_switch_pop_window_contentView; // 地图切换工具窗口view
     private LinearLayout location_to_xy_pop_window_contentView; // 地图坐标定位view
     public FrameLayout black_modal_Layout; //遮罩层
     private PopupWindow map_switch_popupWindow, //显示工具popupWindow容器
             info_detail_popupWindow; //详细信息气泡框
-    LinearLayout location_to_xy_popupWindow; //详细信息气泡框
 
     public FrameLayout mLayoutTop1, mLayoutTop2, mLayoutBottom1,
             mLayoutBottom2, mLayoutBottomLeft, mLayoutBottomRight,
@@ -142,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //天地图底图类型
     public Basemap tiandituVectorBaseMap, tiandituImageBaseMap, tiandituDixingBaseMap;
-    public ArcGISMap map;
+    public static ArcGISMap map;
     private static final String CLIENT_ID = "runtimelite,1000,rud5969339388,none,D7MFA0PL40H94P7EJ009";
     public LicenseResult licenseResult;
 
@@ -218,8 +204,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView() {
 
 
-
-
         mLayoutTop1 = (FrameLayout) findViewById(R.id.layout_top1);
         mLayoutTop2 = (FrameLayout) findViewById(R.id.layout_top2);
         mLayoutBottom1 = (FrameLayout) findViewById(R.id.layout_bottom1);
@@ -286,32 +270,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         /**
-         * 弹出框内容 定位到坐标
-         */
-        location_to_xy_pop_window_contentView = (LinearLayout) layoutInflater.inflate(R.layout.layout_location_to_xy_popwindow, null);
-        m_popwin_ButtonPopGetXy = (Button) map_switch_pop_window_contentView.findViewById(R.id.button_getXY);// 选取坐标按钮
-        m_popwin_ButtonPopMapToXy = (Button) map_switch_pop_window_contentView.findViewById(R.id.button_mapToXy);// 定位到坐标按钮
-
-
-        //    动态添加设施服务
-//        初始化布局参数
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-
-//        创建最外层的LinearLayout
-        location_to_xy_popupWindow = new LinearLayout(this);
-//        设置布局参数
-        location_to_xy_popupWindow.setLayoutParams(layoutParams);
-//        设置子View的Linearlayout
-        location_to_xy_popupWindow.setOrientation(LinearLayout.VERTICAL);
-
-
-        location_to_xy_popupWindow.addView(location_to_xy_pop_window_contentView);
-
-
-
-        /**
          * 点击地图元素显示详细信息框
          */
         info_detail_popupWindow = new PopupWindow(info_detail_pop_window_contentView,
@@ -342,18 +300,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setContentView(R.layout.activity_main);
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-
             initView();// 初始化视图资源
-            // initThemeLayer();// 初始化数据分类和数据列表
-            // initFragment();//初始化fragment
             initlistener();// 設置按鈕監聽
             initMap();// 初始化地圖
-            //initMyLocationCompant();
             selfObj = this;
-
         } catch (Exception e) {
             String msg = e.getMessage();
-            msg = msg + "";
+            Log.e("onCreate", msg);
             e.printStackTrace();
         }
     }
@@ -390,6 +343,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mMapView = findViewById(R.id.mapView);
 
+
+
         //  天地图矢量底图
         webTiledLayer_tianditu_vector_mercator = TianDiTuMethodsClass.CreateTianDiTuTiledLayer(TianDiTuMethodsClass.LayerType.TIANDITU_VECTOR_MERCATOR);
         tiandituVectorBaseMap = new Basemap(webTiledLayer_tianditu_vector_mercator);
@@ -404,10 +359,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // ArcGISMap map = new ArcGISMap(Basemap.Type.TOPOGRAPHIC, 25.8138d, 112.9834d, 13);
         map = new ArcGISMap();
+
+
         //设置底图
         map.setBasemap(tiandituVectorBaseMap);
         //设置初始化视野
-        map.setInitialViewpoint(new Viewpoint(new Point(centerX, centerY, SpatialReference.create(4326)), TianDiTuMethodsClass.SCALES[level]));
+        map.setInitialViewpoint(new Viewpoint(new Point(centerX, centerY, spatialRefrence), TianDiTuMethodsClass.SCALES[level]));
 
 
         // Listener on change in map load status
@@ -494,8 +451,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.e(TAG, "verticalAccuracy:" + verticalAccuracy);
                 Log.e(TAG, "horizontalAccuracy:" + horizontalAccuracy);
 
-                mAppDebugTextView.setText("date:" + dateStr + " \n"
-                        + "date:" + dateStr + " \n"
+                mAppDebugTextView.setText(
+                        "date:" + dateStr + " \n"
                         + "x:" + x + " \n"
                         + "y:" + y + " \n"
                         + "z:" + z + " \n"
@@ -611,6 +568,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+
         mMapView.resume();
     }
 
@@ -650,8 +608,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 定位到我的位置
      */
     public void startLocated() {
-        goToMyLocation = true;
-        locationDisplay.startAsync();
+
+        if(handPermission()){
+            goToMyLocation = true;
+            locationDisplay.startAsync();
+        }
     }
 
     /**
@@ -727,17 +688,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+
+        /**
+         * 点击坐标定位功能按钮事件
+         */
         m_popwin_ButtonPopDingwei.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
+                //隐藏popwin
                 if (map_switch_popupWindow != null && map_switch_popupWindow.isShowing()) {
                     map_switch_popupWindow.dismiss();
                 }
-
+                //实例化fragment
                 locationToXYFragment = new LocationToXYFragment();
+                //替换到top2区域
                 setFragment(R.id.layout_top2, locationToXYFragment);
+
+
 
             }
         });
@@ -851,8 +819,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * 以定动态申请位权限为例
+     * @return
      */
-    public void handPermission() {
+    public boolean handPermission() {
         // 定位权限组
         String[] mPermissionGroup = new String[]{
                 Manifest.permission.ACCESS_FINE_LOCATION,
@@ -874,6 +843,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             // 权限都有了，就可以继续后面的操作
         }
+        return true;
     }
 
 
