@@ -1,6 +1,9 @@
 package com.bohaigaoke.forestry;
 
 import android.Manifest;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -21,6 +24,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,6 +50,7 @@ import com.bohaigaoke.android.map.location.GraphicUtil;
 import com.bohaigaoke.android.map.location.PositionUtil;
 import com.bohaigaoke.forestry.fragment.BaseFragment;
 import com.bohaigaoke.forestry.fragment.LocationFragment;
+import com.bohaigaoke.forestry.fragment.LocationToXYFragment;
 import com.bohaigaoke.forestry.service.LocationService;
 import com.esri.arcgisruntime.ArcGISRuntimeEnvironment;
 import com.esri.arcgisruntime.LicenseResult;
@@ -79,7 +84,9 @@ import com.esri.arcgisruntime.symbology.SimpleFillSymbol;
 import com.esri.arcgisruntime.symbology.SimpleLineSymbol;
 import com.esri.arcgisruntime.symbology.SimpleMarkerSymbol;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, BaseFragment.BaseMessage {
@@ -87,15 +94,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final String TAG = MainActivity.class.getSimpleName();
 
     private LinearLayout map_switch_pop_window_contentView; // 地图切换工具窗口view
+    private LinearLayout location_to_xy_pop_window_contentView; // 地图坐标定位view
     public FrameLayout black_modal_Layout; //遮罩层
-    private PopupWindow map_switch_popupWindow,
-            info_detail_popupWindow; // 显示工具popupWindow容器
+    private PopupWindow map_switch_popupWindow, //显示工具popupWindow容器
+            info_detail_popupWindow; //详细信息气泡框
+    LinearLayout location_to_xy_popupWindow; //详细信息气泡框
+
+    public FrameLayout mLayoutTop1, mLayoutTop2, mLayoutBottom1,
+            mLayoutBottom2, mLayoutBottomLeft, mLayoutBottomRight,
+            mLayoutCenter, mLayoutBottomCenter, mLayoutTopLeft,
+            mLayoutTopRight, mLayoutWindow;
+
     private LayoutInflater layoutInflater;// 充气筒实例
     private RelativeLayout info_detail_pop_window_contentView;
-    private Button m_popwin_ButtonPopCeju, //测距按钮
+    private Button
+            m_popwin_ButtonPopGetXy, //拾取坐标按钮
+            m_popwin_ButtonPopMapToXy, //定位到坐标按钮
+            m_popwin_ButtonPopCeju, //测距按钮
             m_popwin_ButtonPopCemian,  //侧面积按钮
             m_popwin_ButtonPopQingchu, // 清除按钮
             m_popwin_ButtonPopJietu,  // 截图按钮
+            m_popwin_ButtonPopQuantu,  // 全图按钮
+            m_popwin_ButtonPopDingwei,  // 定位按钮
             m_popwin_ButtonPop_point_marker,  // 标注点按钮
             m_popwin_ButtonPop_line_marker,  // 标注线按钮
             m_popwin_ButtonPop_polygon_marker,  // 标注面按钮
@@ -107,9 +127,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             m_popwin_ButtonPopDixXingMap,
             m_popwin_Button_mapmode_switch_btn_pressed;
 
-    private TextView mMapLoadStatusTextView;
+    private TextView mMapLoadStatusTextView, mAppDebugTextView;
 
     private LocationFragment mLocationFragment; //我的位置
+
+    boolean goToMyLocation = false;
+    double bestScale = 10000d;
 
     public static MainActivity selfObj;
 
@@ -186,11 +209,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private int mlGraphicId = -1;
     private int mlAourndGraphicId = -1;
+
+    LocationToXYFragment locationToXYFragment;
+
     /**
      * 初始化页面显示元素
      */
     private void initView() {
 
+
+
+
+        mLayoutTop1 = (FrameLayout) findViewById(R.id.layout_top1);
+        mLayoutTop2 = (FrameLayout) findViewById(R.id.layout_top2);
+        mLayoutBottom1 = (FrameLayout) findViewById(R.id.layout_bottom1);
+        mLayoutBottom2 = (FrameLayout) findViewById(R.id.layout_bottom2);
+        mLayoutBottomLeft = (FrameLayout) findViewById(R.id.layout_bottom_left);
+        mLayoutBottomRight = (FrameLayout) findViewById(R.id.layout_bottom_right);
+
+        mAppDebugTextView = (TextView) findViewById(R.id.appDebugText);
         mMapLoadStatusTextView = (TextView) findViewById(R.id.mapLoadStatusResult);
 
         //遮罩层
@@ -220,14 +257,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         m_popwin_ButtonPopJietu = (Button) map_switch_pop_window_contentView.findViewById(R.id.pop_jietu); // 截图按钮
         m_popwin_ButtonPopBiaozhu = (Button) map_switch_pop_window_contentView.findViewById(R.id.pop_biaozhu);// 标注按钮
+
+        m_popwin_ButtonPopQuantu = (Button) map_switch_pop_window_contentView.findViewById(R.id.pop_quantu); // 全图范围按钮
+        m_popwin_ButtonPopDingwei = (Button) map_switch_pop_window_contentView.findViewById(R.id.pop_dingwei);// 点定位按钮
+
+
         m_popwin_ButtonPopDianzhiMap = (ImageButton) map_switch_pop_window_contentView.findViewById(R.id.dianziBtn);// 电子地图按钮
         m_popwin_ButtonPopDianzhiMap.setImageResource(R.drawable.map_vect);// 默认选中电子地图
+
+
         m_popwin_ButtonPopYinxiangMap = (ImageButton) map_switch_pop_window_contentView.findViewById(R.id.yinxiangBtn);// 卫星影像地图按钮
         m_popwin_ButtonPopDixXingMap = (ImageButton) map_switch_pop_window_contentView.findViewById(R.id.dixingBtn);// 地形地图按钮
         m_popwin_Button_mapmode_switch_btn_pressed = (ImageButton) map_switch_pop_window_contentView.findViewById(R.id.mapmode_switch_btn_pressed);    // popwindow 内显示popwindow切换按钮
         /**
          * 弹出框对象 切换地图
          */
+
         map_switch_popupWindow = new PopupWindow(map_switch_pop_window_contentView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, true);
         map_switch_popupWindow.setFocusable(true);
         map_switch_popupWindow.setOutsideTouchable(true);// 设置允许在外点击消失
@@ -238,6 +283,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 black_modal_Layout.setVisibility(View.GONE);
             }
         });
+
+
+        /**
+         * 弹出框内容 定位到坐标
+         */
+        location_to_xy_pop_window_contentView = (LinearLayout) layoutInflater.inflate(R.layout.layout_location_to_xy_popwindow, null);
+        m_popwin_ButtonPopGetXy = (Button) map_switch_pop_window_contentView.findViewById(R.id.button_getXY);// 选取坐标按钮
+        m_popwin_ButtonPopMapToXy = (Button) map_switch_pop_window_contentView.findViewById(R.id.button_mapToXy);// 定位到坐标按钮
+
+
+        //    动态添加设施服务
+//        初始化布局参数
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+
+//        创建最外层的LinearLayout
+        location_to_xy_popupWindow = new LinearLayout(this);
+//        设置布局参数
+        location_to_xy_popupWindow.setLayoutParams(layoutParams);
+//        设置子View的Linearlayout
+        location_to_xy_popupWindow.setOrientation(LinearLayout.VERTICAL);
+
+
+        location_to_xy_popupWindow.addView(location_to_xy_pop_window_contentView);
+
+
+
+        /**
+         * 点击地图元素显示详细信息框
+         */
         info_detail_popupWindow = new PopupWindow(info_detail_pop_window_contentView,
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT, true);
@@ -255,8 +331,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mLocationFragment = (LocationFragment) getFragmentManager().findFragmentById(R.id.fragment_location);
 
 
-
-
     }
 
 
@@ -266,12 +340,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         try {
             setContentView(R.layout.activity_main);
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+
             initView();// 初始化视图资源
             // initThemeLayer();// 初始化数据分类和数据列表
             // initFragment();//初始化fragment
             initlistener();// 設置按鈕監聽
             initMap();// 初始化地圖
-            initMyLocationCompant();
+            //initMyLocationCompant();
             selfObj = this;
 
         } catch (Exception e) {
@@ -373,7 +450,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-
         //不显示logo
         mMapView.setAttributionTextVisible(false);
         mMapView.setMap(map);
@@ -396,12 +472,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         locationDisplay.setAutoPanMode(LocationDisplay.AutoPanMode.NAVIGATION);
 
 
-        locationDisplay.addLocationChangedListener(new LocationDisplay.LocationChangedListener(){
+        locationDisplay.addLocationChangedListener(new LocationDisplay.LocationChangedListener() {
 
             @Override
             public void onLocationChanged(LocationDisplay.LocationChangedEvent locationChangedEvent) {
                 LocationDisplay locationDisplay1 = locationChangedEvent.getSource();
-                LocationDataSource.Location location  = locationChangedEvent.getLocation();
+                LocationDataSource.Location location = locationChangedEvent.getLocation();
                 Point point = location.getPosition(); //位置
                 double x = point.getX();
                 double y = point.getY();
@@ -409,13 +485,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 double veloCity = location.getVelocity(); // 加速度
                 double verticalAccuracy = location.getVerticalAccuracy(); //准确度
                 double horizontalAccuracy = location.getHorizontalAccuracy();//水平精度
+                Calendar gpsTime = location.getTimeStamp();
+                String dateStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(gpsTime.getTime());
+                Log.e(TAG, "x:" + x);
+                Log.e(TAG, "y:" + y);
+                Log.e(TAG, "z:" + z);
+                Log.e(TAG, "veloCity:" + veloCity);
+                Log.e(TAG, "verticalAccuracy:" + verticalAccuracy);
+                Log.e(TAG, "horizontalAccuracy:" + horizontalAccuracy);
 
-                Log.e(TAG,"x:"+x);
-                Log.e(TAG,"y:"+y);
-                Log.e(TAG,"z:"+z);
-                Log.e(TAG,"veloCity:"+veloCity);
-                Log.e(TAG,"verticalAccuracy:"+verticalAccuracy);
-                Log.e(TAG,"horizontalAccuracy:"+horizontalAccuracy);
+                mAppDebugTextView.setText("date:" + dateStr + " \n"
+                        + "date:" + dateStr + " \n"
+                        + "x:" + x + " \n"
+                        + "y:" + y + " \n"
+                        + "z:" + z + " \n"
+                        + "veloCity:" + veloCity + " \n"
+                        + "verticalAccuracy:" + verticalAccuracy + " \n"
+                        + "horizontalAccuracy:" + horizontalAccuracy + " \n"
+                );
+
+                if (goToMyLocation) {
+                    mMapView.setViewpointCenterAsync(point, bestScale);
+                    goToMyLocation = false;
+                } else {
+                    mMapView.setViewpointCenterAsync(point, mMapView.getMapScale());
+                }
 
             }
         });
@@ -461,7 +555,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-
         //mMapView.setOnTouchListener();\
         //地图初始化完成后调用事件
         map.addDoneLoadingListener(new Runnable() {
@@ -483,14 +576,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -529,6 +621,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public static final int SHOW_MAP_SWITCH_POPWINDOW = 11;
+    public static final int SHOW_LOCATION_TO_XY_POPWINDOW = 12;
 
     @Override
     public void sendMessage(Message msg) {
@@ -539,6 +632,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (map_switch_popupWindow != null && map_switch_pop_window_contentView != null && !map_switch_popupWindow.isShowing()) {
                     map_switch_popupWindow.showAsDropDown(mImageReliSwitch);
                 }
+                break;
+
+            case SHOW_LOCATION_TO_XY_POPWINDOW:
+
                 break;
         }
 
@@ -553,27 +650,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 定位到我的位置
      */
     public void startLocated() {
+        goToMyLocation = true;
         locationDisplay.startAsync();
-       // handPermission();
-       // locationService.start();// 定位SDK
-        // start之后会默认发起一次定位请求，开发者无须判断isstart并主动调用request
     }
 
     /**
      * 取消定位到我的位置
      */
     public void stopLocated() {
+
+        goToMyLocation = false;
         locationDisplay.stop();
-//        locationService.stop();// 定位SDK
-//        // start之后会默认发起一次定位请求，开发者无须判断isstart并主动调用request
-//        if (mlGraphicId != -1) {
-//            myLocationGraphicLayer.removeGraphic(mlGraphicId);
-//            mlGraphicId = -1;
-//        }
-//        if (mlAourndGraphicId != -1) {
-//            myLocationGraphicLayer.removeGraphic(mlAourndGraphicId);
-//            mlAourndGraphicId = -1;
-//        }
     }
 
     /**
@@ -583,8 +670,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 底图切wind换按钮点击事件
         m_popwin_Button_mapmode_switch_btn_pressed.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                if (map_switch_popupWindow != null && map_switch_popupWindow.isShowing())
+                if (map_switch_popupWindow != null && map_switch_popupWindow.isShowing()) {
                     map_switch_popupWindow.dismiss();
+                }
             }
         });
 
@@ -596,8 +684,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //设置底图
                 map.setBasemap(tiandituVectorBaseMap);
 
-                if (map_switch_popupWindow != null && map_switch_popupWindow.isShowing())
+                if (map_switch_popupWindow != null && map_switch_popupWindow.isShowing()) {
                     map_switch_popupWindow.dismiss();
+                }
             }
         });
         // 影像地图
@@ -607,8 +696,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //设置底图
                 map.setBasemap(tiandituImageBaseMap);
 
-                if (map_switch_popupWindow != null && map_switch_popupWindow.isShowing())
+                if (map_switch_popupWindow != null && map_switch_popupWindow.isShowing()) {
                     map_switch_popupWindow.dismiss();
+                }
             }
         });
 
@@ -620,12 +710,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //设置底图
                 map.setBasemap(tiandituDixingBaseMap);
 
-                if (map_switch_popupWindow != null && map_switch_popupWindow.isShowing())
+                if (map_switch_popupWindow != null && map_switch_popupWindow.isShowing()) {
                     map_switch_popupWindow.dismiss();
+                }
             }
         });
 
+        m_popwin_ButtonPopQuantu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                mMapView.setViewpointGeometryAsync(GraphicUtil.main_borderGeometry, 20d);
+                if (map_switch_popupWindow != null && map_switch_popupWindow.isShowing()) {
+                    map_switch_popupWindow.dismiss();
+                }
+            }
+        });
+
+        m_popwin_ButtonPopDingwei.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (map_switch_popupWindow != null && map_switch_popupWindow.isShowing()) {
+                    map_switch_popupWindow.dismiss();
+                }
+
+                locationToXYFragment = new LocationToXYFragment();
+                setFragment(R.id.layout_top2, locationToXYFragment);
+
+            }
+        });
 
     }
 
@@ -664,7 +779,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // pictureMarkerSymbol_mylocation.setAngle(direct);
 
 
-
                 double radius_degree = location.getRadius() / (2 * Math.PI * 6378137.0) * 360;// 精度米转换成度
                 myLocGraphic = new Graphic(myLocPoint, ml_pictureMarkerSymbol);// 中心点图标
                 if (myLocAroundPolygon == null) {
@@ -688,7 +802,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     // mapView.centerAt(myLocPoint, true);
                     mMapView.setViewpointCenterAsync(myLocPoint);
                 } else {
-                    mGraphicsOverlay.getGraphics().remove(myLocGraphic);	// 已经定位过 就更新位置
+                    mGraphicsOverlay.getGraphics().remove(myLocGraphic);    // 已经定位过 就更新位置
                     mGraphicsOverlay.getGraphics().add(myLocGraphic);
                 }
                 // mlgl.updateGraphic(mlGraphicId, myLocGraphic);
@@ -698,6 +812,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     };
+
     /**
      * 计算方位
      */
@@ -759,5 +874,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             // 权限都有了，就可以继续后面的操作
         }
+    }
+
+
+    public void setFragment(int layoutId, Fragment fragment) {
+        if (fragment == null)
+            return;
+        ((FrameLayout) findViewById(layoutId)).setVisibility(View.VISIBLE);
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(layoutId, fragment);
+
+        transaction.commit();
     }
 }

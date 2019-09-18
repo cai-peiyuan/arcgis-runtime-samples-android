@@ -311,6 +311,15 @@
         </LinearLayout>
 
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/map_mode_18px"
+            android:layout_marginTop="@dimen/map_mode_18px"
+            android:text="快速定位"
+            android:visibility="visible"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/map_tool_width_45dp"
@@ -319,7 +328,46 @@
             android:background="#f1f1f1"
             android:gravity="center"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="visible">
+            <!-- 全图范围 -->
+            <Button
+                android:id="@+id/pop_quantu"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/full"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="全图"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" />
+            <!-- 定位 -->
+            <Button
+                android:id="@+id/pop_dingwei"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="#f1f1f1"
+                android:drawableLeft="@drawable/location"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/map_margin_16px"
+                android:text="定位"
+                android:textColor="@color/mapmode_textcolor_btn"
+                android:textSize="@dimen/map_TextSize_12sp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/map_tool_width_45dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#f1f1f1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
             <!-- 截图按钮 -->
             <Button
                 android:id="@+id/pop_jietu"

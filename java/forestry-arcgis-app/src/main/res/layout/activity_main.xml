@@ -8,19 +8,35 @@
     android:orientation="vertical"
     >
 
-    <!--<android.support.design.widget.AppBarLayout
+    <!-- 左侧侧滑菜单 -->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer"
+        android:visibility="gone"/>
+
+
+    <!--  title -->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:background="@color/main"
+        android:visibility="gone"
+        >
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/main"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    </android.support.design.widget.AppBarLayout>-->
+    </android.support.design.widget.AppBarLayout>
 
     <!-- MapView -->
     <com.esri.arcgisruntime.mapping.view.MapView
@@ -44,14 +60,28 @@
         android:visibility="gone" >
     </FrameLayout>
 
+    <!-- 搜索fragment -->
+    <FrameLayout
+        android:id="@+id/layout_top2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/main"
+        android:gravity="center"
+        android:orientation="vertical" >
+    </FrameLayout>
+
+
+
     <!-- top right 底图切换按钮 -->
     <FrameLayout
         android:id="@+id/layout_top_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/layout_top1"
-        android:layout_marginRight="@dimen/map_margin_15dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/app_bar_view"
+        android:layout_marginEnd="@dimen/map_margin_15dp"
         android:layout_marginTop="@dimen/map_margin_15dp"
         android:gravity="center"
         android:orientation="vertical" >
@@ -91,11 +121,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/layout_bottom1"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginBottom="@dimen/map_margin_15dp"
-        android:layout_marginRight="@dimen/map_margin_15dp"
+        android:layout_marginEnd="@dimen/map_margin_15dp"
         android:gravity="center"
         android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal" >
         <fragment
             android:id="@+id/fragment_zoom"
@@ -110,9 +141,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/layout_bottom1"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_marginBottom="@dimen/map_margin_15dp"
-        android:layout_marginLeft="@dimen/map_margin_15dp"
+        android:layout_marginStart="@dimen/map_margin_15dp"
         android:orientation="horizontal" >
         <fragment
             android:id="@+id/fragment_location"
@@ -128,8 +159,12 @@
         android:layout_height="match_parent"
         android:background="#b0000000"
         android:visibility="gone"
-        android:clickable="true" >
+        android:clickable="true"
+        android:focusable="true"
+        >
     </FrameLayout>
+
+
 
 
     <!-- TextView -->
@@ -137,7 +172,6 @@
         android:id="@+id/mapLoadStatusText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/mapView"
         android:text="@string/map_load_status"
@@ -152,10 +186,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_toEndOf="@+id/mapLoadStatusText"
-        android:layout_toRightOf="@+id/mapLoadStatusText"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+    <!-- TextView -->
+    <TextView
+        android:id="@+id/appDebugText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/mapLoadStatusResult"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>
