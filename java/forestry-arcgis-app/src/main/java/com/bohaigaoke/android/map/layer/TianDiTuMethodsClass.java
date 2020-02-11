@@ -188,7 +188,7 @@ public class TianDiTuMethodsClass {
                     break;
             }
 
-            mainUrl += "&tk=2ce94f67e58faa24beb7cb8a09780552";
+            mainUrl += "&tk=8971e4c7b3640d506c2dc111221af6a0";
 
             List<LevelOfDetail> mainLevelOfDetail = new ArrayList<LevelOfDetail>();
             Point mainOrigin = null;
